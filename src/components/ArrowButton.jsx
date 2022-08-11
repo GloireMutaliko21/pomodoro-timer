@@ -3,7 +3,7 @@ import React from 'react'
 const ArrowButton = ({ handleClick, icon }) => {
     return (
         <button
-            className='text-xl text-white'
+            className='text-xl'
             type='button'
             onClick={handleClick}
         >

@@ -5,19 +5,19 @@ import { TbCircleMinus } from "react-icons/tb";
 import ArrowButton from './ArrowButton';
 import { useStateContext } from "../context/contextProvider";
 
-const Options = ({ titre }) => {
+const OptionsBreak = ({ titre }) => {
 
     const { breakLength, setBreakLength } = useStateContext()
 
     return (
         <div>
-            <p className='text-white text-2xl'>{titre}</p>
-            <div className='flex text-white justify-around'>
+            <p className='text-2xl'>{titre}</p>
+            <div className='flex justify-around pt-6'>
                 <ArrowButton
                     icon={<TbCircleMinus />}
-                    handleClick={() => setBreakLength(breakLength - 1)}
+                    handleClick={() => { breakLength > 1 ? setBreakLength(breakLength - 1) : setBreakLength(breakLength) }}
                 />
-                <p>{breakLength}</p>
+                <p className='text-lg text-green-700 font-semibold'>{breakLength}</p>
                 <ArrowButton
                     icon={<BiPlusCircle />}
                     handleClick={() => setBreakLength(breakLength + 1)}
@@ -27,4 +27,4 @@ const Options = ({ titre }) => {
     )
 }
 
-export default Options
+export default OptionsBreak
