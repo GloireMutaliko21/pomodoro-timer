@@ -15,11 +15,9 @@ export const ContextProvider = ({ children }) => {
         <StateContext.Provider
             value={{
                 breakLength,
-                // setBreakTimer,
                 setBreakLength,
                 sessionLength,
                 setSessionLength,
-                // setSessionTimer
             }}
         >
             {children}
