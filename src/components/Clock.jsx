@@ -5,9 +5,9 @@ import { BiReset } from "react-icons/bi";
 import { useStateContext } from "../context/contextProvider";
 
 const Clock = () => {
-    const { sessionLength, breakLength, setSessionLength, setBreakLength } = useStateContext()
+    const { sessionLength, breakLength, setSessionLength, setBreakLength, setIsStart } = useStateContext()
     const [isPaused, setIsPaused] = useState(true)
-    const [mode, setMode] = useState('break')
+    const [mode, setMode] = useState('session')
     const [secondsLeft, setSecondsLeft] = useState(0)
 
     const secondsLeftRef = useRef(secondsLeft)
@@ -36,6 +36,7 @@ const Clock = () => {
     }
 
     useEffect(() => {
+
         initTimer()
 
         const interval = setInterval(() => {
@@ -72,8 +73,10 @@ const Clock = () => {
                 {
                     isPaused ? <button
                         onClick={() => {
+                            secondsLeftRef.current = sessionLength * 60
                             setIsPaused(false);
                             isPausedRef.current = false
+                            setIsStart(true)
                         }}
                         className='p-4'
                     >
@@ -93,6 +96,13 @@ const Clock = () => {
                     onClick={() => {
                         setIsPaused(true)
                         isPausedRef.current = true
+                        setIsStart(false)
+                        setBreakLength(5)
+                        setSessionLength(25)
+                        setSecondsLeft(sessionLength * 60)
+                        setMode('session')
+
+                        console.log(secondsLeft)
                     }}
                     className='p-4'
                 >
