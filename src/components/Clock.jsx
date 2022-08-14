@@ -1,18 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { FaPause, FaPlay } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
+import Tooltip from "@mui/material/Tooltip";
 
 import { useStateContext } from "../context/contextProvider";
 
 const Clock = () => {
-    const { sessionLength, breakLength, setSessionLength, setBreakLength, setIsStart } = useStateContext()
+    const { sessionLength, breakLength, setSessionLength, setBreakLength, isStart, setIsStart } = useStateContext()
     const [isPaused, setIsPaused] = useState(true)
-    const [mode, setMode] = useState('session')
+    const [mode, setMode] = useState('break')
     const [secondsLeft, setSecondsLeft] = useState(0)
 
     const secondsLeftRef = useRef(secondsLeft)
     const isPausedRef = useRef(isPaused)
     const modeRef = useRef(mode)
+
+    function reset() {
+        if (!isStart) {
+            secondsLeftRef.current = sessionLength * 60
+        }
+
+    }
 
 
     function switchMode() {
@@ -71,26 +79,32 @@ const Clock = () => {
             </div>
             <div>
                 {
-                    isPaused ? <button
-                        onClick={() => {
-                            secondsLeftRef.current = sessionLength * 60
-                            setIsPaused(false);
-                            isPausedRef.current = false
-                            setIsStart(true)
-                        }}
-                        className='p-4'
-                    >
-                        <FaPlay className='text-emerald-700 border-0 inline-block' />
-                    </button> :
-                        <button
-                            onClick={() => {
-                                setIsPaused(true)
-                                isPausedRef.current = true
-                            }}
-                            className='p-4'
-                        >
-                            <FaPause className='text-emerald-700 border-0 inline-block' />
-                        </button>
+                    isPaused ?
+                        <Tooltip title='Commencer'>
+                            <button
+                                onClick={() => {
+                                    reset()
+                                    setIsPaused(false);
+                                    isPausedRef.current = false
+                                    setIsStart(true)
+                                }}
+                                className='p-4'
+                            >
+                                <FaPlay className='text-emerald-700 border-0 inline-block' />
+                            </button>
+                        </Tooltip> :
+
+                        <Tooltip title="Pause">
+                            <button
+                                onClick={() => {
+                                    setIsPaused(true)
+                                    isPausedRef.current = true
+                                }}
+                                className='p-4'
+                            >
+                                <FaPause className='text-emerald-700 border-0 inline-block' />
+                            </button>
+                        </Tooltip>
                 }
                 <button
                     onClick={() => {
