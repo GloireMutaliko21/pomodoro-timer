@@ -63,9 +63,10 @@ const Clock = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sessionLength, breakLength, setBreakLength, setSessionLength])
 
-    const minutes = Math.floor(secondsLeft / 60)
+    let minutes = Math.floor(secondsLeft / 60)
     let seconds = secondsLeft % 60
 
+    if (minutes < 10) minutes = '0' + minutes
     if (seconds < 10) seconds = '0' + seconds
 
     return (
@@ -106,22 +107,24 @@ const Clock = () => {
                             </button>
                         </Tooltip>
                 }
-                <button
-                    onClick={() => {
-                        setIsPaused(true)
-                        isPausedRef.current = true
-                        setIsStart(false)
-                        setBreakLength(5)
-                        setSessionLength(25)
-                        setSecondsLeft(sessionLength * 60)
-                        setMode('session')
+                <Tooltip title='Réinitialiser'>
+                    <button
+                        onClick={() => {
+                            setIsPaused(true)
+                            isPausedRef.current = true
+                            setIsStart(false)
+                            setBreakLength(5)
+                            setSessionLength(25)
+                            setSecondsLeft(sessionLength * 60)
+                            setMode('session')
 
-                        console.log(secondsLeft)
-                    }}
-                    className='p-4'
-                >
-                    <BiReset className='text-emerald-700 border-0 inline-block' />
-                </button>
+                            console.log(secondsLeft)
+                        }}
+                        className='p-4'
+                    >
+                        <BiReset className='text-emerald-700 border-0 inline-block' />
+                    </button>
+                </Tooltip>
             </div>
         </div>
     )
