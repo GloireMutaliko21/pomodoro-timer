@@ -8,7 +8,7 @@ import { useStateContext } from "../context/contextProvider";
 const Clock = () => {
     const { sessionLength, breakLength, setSessionLength, setBreakLength, isStart, setIsStart } = useStateContext()
     const [isPaused, setIsPaused] = useState(true)
-    const [mode, setMode] = useState('break')
+    const [mode, setMode] = useState('session')
     const [secondsLeft, setSecondsLeft] = useState(0)
 
     const secondsLeftRef = useRef(secondsLeft)
@@ -75,7 +75,7 @@ const Clock = () => {
             <div className='border-4 border-green-700 p-16 rounded-full'>
                 <p>{mode === 'session' ? 'Session Time' : 'Break Time'}</p>
                 <div className='text-white text-7xl font-black m-6'>
-                    <span>{minutes + ':' + seconds}</span>
+                    <span className={`${minutes <= 1 ? 'text-red-700' : ''}`}>{minutes + ':' + seconds}</span>
                 </div>
             </div>
             <div>
