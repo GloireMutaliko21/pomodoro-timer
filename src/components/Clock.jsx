@@ -9,8 +9,8 @@ const red = '#f54e4e'
 
 const Clock = () => {
     const { setOptionsShow, sessionLength, breakLength, setSessionLength, setBreakLength } = useStateContext()
-    const [isPaused, setIsPaused] = useState(false)
-    const [mode, setMode] = useState('session')
+    const [isPaused, setIsPaused] = useState(true)
+    const [mode, setMode] = useState('break')
     const [secondsLeft, setSecondsLeft] = useState(0)
 
     const secondsLeftRef = useRef(secondsLeft)
@@ -73,7 +73,8 @@ const Clock = () => {
                     isPaused ?
                         <button
                             onClick={() => {
-                                setIsPaused(false)
+                                setIsPaused(false);
+                                isPausedRef.current = false
                             }}
                             className='p-4'
                         >
@@ -84,6 +85,7 @@ const Clock = () => {
                         <button
                             onClick={() => {
                                 setIsPaused(true)
+                                isPausedRef.current = true
                             }}
                             className='p-4'
                         >
