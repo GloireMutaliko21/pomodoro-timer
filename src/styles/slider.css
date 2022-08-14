@@ -1,0 +1,20 @@
+label {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.thumb {
+    background-color: rgb(241, 50, 50);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.thumb-green {
+    background-color: rgb(10, 126, 10);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
