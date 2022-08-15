@@ -2,7 +2,6 @@ import React from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
 import { BsFillPatchMinusFill } from 'react-icons/bs'
 
-import '../styles/slider.css';
 import { useStateContext } from "../context/contextProvider";
 
 const OptionsBreak = () => {
