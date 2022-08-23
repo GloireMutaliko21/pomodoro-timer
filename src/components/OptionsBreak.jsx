@@ -8,8 +8,8 @@ const OptionsBreak = () => {
     const { breakLength, setBreakLength, isStart } = useStateContext()
 
     return (
-        <div className='flex flex-col justify-between items-center text-left text-white'>
-            <label className='block'>Break Length: {breakLength}:00</label>
+        <div id='break-label' className='flex flex-col justify-between items-center text-left text-white'>
+            <label id="break-length" className='block'> {breakLength}</label>
             <div className='text-emerald-700 border-0 text-3xl'>
                 <button onClick={() => {
                     breakLength > 1 ?
@@ -18,12 +18,14 @@ const OptionsBreak = () => {
                 }}
                     className='mr-5 text-red-400'
                     disabled={isStart}
+                    id='break-decrement'
                 >
                     <BsFillPatchMinusFill />
                 </button>
                 <button
-                    onClick={() => setBreakLength(breakLength + 1)}
+                    onClick={() => { breakLength < 60 ? setBreakLength(breakLength + 1) : setBreakLength(breakLength) }}
                     disabled={isStart}
+                    id="break-increment"
                 >
                     <BsFillPlusCircleFill />
                 </button>

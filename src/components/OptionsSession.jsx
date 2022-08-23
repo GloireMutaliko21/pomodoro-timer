@@ -8,22 +8,25 @@ const OptionsSession = () => {
     const { sessionLength, setSessionLength, isStart } = useStateContext()
 
     return (
-        <div className='flex flex-col justify-between items-center text-left text-white'>
+        <div id='session-label' className='flex flex-col justify-between items-center text-left text-white'>
 
-            <label className='block'>Session Length: {sessionLength}:00</label>
+            <label id="session-length" className='block'> {sessionLength}</label>
             <div className='text-emerald-700 border-0 text-3xl'>
                 <button onClick={() => {
-                    sessionLength > 5 ?
+                    sessionLength > 1 ?
                         setSessionLength(sessionLength - 1) :
                         setSessionLength(sessionLength)
                 }}
                     disabled={isStart}
-                    className='mr-5 text-red-400'>
+                    className='mr-5 text-red-400'
+                    id='session-decrement'
+                >
                     <BsFillPatchMinusFill />
                 </button>
                 <button
-                    onClick={() => setSessionLength(sessionLength + 1)}
+                    onClick={() => { sessionLength < 60 ? setSessionLength(sessionLength + 1) : setSessionLength(sessionLength) }}
                     disabled={isStart}
+                    id="session-increment"
                 >
                     <BsFillPlusCircleFill />
                 </button>

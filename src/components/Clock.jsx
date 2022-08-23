@@ -73,9 +73,9 @@ const Clock = () => {
         <div className='flex flex-col items-center justify-center m-10 text-white text-4xl'>
             <h1 className='font-black mb-4'>Pomodoro Timer</h1>
             <div className='border-4 border-green-700 p-16 rounded-full'>
-                <p>{mode === 'session' ? 'Session Time' : 'Break Time'}</p>
+                <p id="timer-label">{mode === 'session' ? 'Session Time' : 'Break Time'}</p>
                 <div className='text-white text-7xl font-black m-6'>
-                    <span className={`${minutes <= 1 ? 'text-red-700' : ''}`}>{minutes + ':' + seconds}</span>
+                    <span id="time-left" className={`${minutes <= 1 ? 'text-red-700' : ''}`}>{minutes + ':' + seconds}</span>
                 </div>
             </div>
             <div>
@@ -90,6 +90,7 @@ const Clock = () => {
                                     setIsStart(true)
                                 }}
                                 className='p-4'
+                                id="start_stop"
                             >
                                 <FaPlay className='text-emerald-700 border-0 inline-block' />
                             </button>
@@ -102,6 +103,7 @@ const Clock = () => {
                                     isPausedRef.current = true
                                 }}
                                 className='p-4'
+                                id="start_stop"
                             >
                                 <FaPause className='text-emerald-700 border-0 inline-block' />
                             </button>
@@ -121,6 +123,7 @@ const Clock = () => {
                             console.log(secondsLeft)
                         }}
                         className='p-4'
+                        id="reset"
                     >
                         <BiReset className='text-emerald-700 border-0 inline-block' />
                     </button>
